@@ -16,7 +16,7 @@ import { useRoute } from '@react-navigation/native';
 function MedicineDetails() {
   const navigation = useNavigation();
   const route = useRoute();
-  const {image, medicineName,DRG_SERIAL_NO ,BARCODE,DRG_FILLING,DOSAGE,DRG_CONCENTRATE,STORES_DESC_L,ATCCODE,DRG_PRIMARY_CMP_COUNTRY,JPP,PHARM_P} = route.params;
+  const {_id,image, medicineName,DRG_SERIAL_NO ,BARCODE,DRG_FILLING,DOSAGE,DRG_CONCENTRATE,STORES_DESC_L,ATCCODE,DRG_PRIMARY_CMP_COUNTRY,JPP,PHARM_P} = route.params;
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -120,9 +120,9 @@ function MedicineDetails() {
           <Text style={styles.info}>PHARM_P:</Text>
           <Text style={styles.details_info}>{PHARM_P}</Text>
         </View>
-        <TouchableOpacity style={styles.btn_moreDetails}>
-          <Text style={styles.text_moreDetails} onPress={()=>{navigation.navigate('AdvancedInfo')}}>More Details</Text>
-        </TouchableOpacity>
+        {/* <TouchableOpacity style={styles.btn_moreDetails}>
+          <Text style={styles.text_moreDetails} onPress={()=>{navigation.navigate('AdvancedInfo', { medicineId:_id  })}}>More Details</Text>
+        </TouchableOpacity> */}
 
       </View>
     </ScrollView>
@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
   details_info: {
     fontSize: 14,
     marginTop: 3,
+    marginBottom:13
   },
   icon_img: {
     height: 24,

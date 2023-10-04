@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 
 import {
@@ -10,8 +10,53 @@ import {
     TouchableOpacity,
     TextInput,
   } from "react-native";
+  import axios from 'axios';
 function Login() {
     const navigation = useNavigation();
+const [email,setEmail]=useState("");
+const [password,setPassword]=useState("")
+const[valid,setValid]=useState(false)
+const handleLogin = async () => {
+  try {
+    const response = await axios.post('http://192.168.68.110:5000/users/auth', {
+      email,
+      password,
+    });
+
+    if (response.data) {
+      // Navigate to the Profile screen and pass user information as route params
+      navigation.navigate('Home', {
+        // Pass user information as route params to the Profile screen
+        screen: 'Profile',
+        params: {
+          username: response.data.username,
+          email: response.data.email,
+        },
+      });
+    } 
+  } catch (error) {
+    setValid(true);
+    console.log('Invalid email or password');
+  }
+};
+
+// const handleLogin = async () => {
+//   try {
+//     const response = await axios.post('http://192.168.68.110:5000/users/auth', {
+//       email,
+//       password,
+//     });
+
+//     if (response.data) {
+//       navigation.navigate('Home');
+//     } 
+//   } catch (error) {
+//     setValid(true); // Set the valid state to true for displaying the error message
+//     console.log('Invalid email or password');
+//     // console.error('Login Error', error);
+//   }
+// };
+
 
   return (
     <View>
@@ -34,19 +79,24 @@ function Login() {
       <Text style={styles.title}>Email</Text>
       <TextInput
         style={[styles.textInput,styles.marginInput]}
+        onChangeText={(text)=>setEmail(text)}
+        value={email}
         // onChangeText={newText => setText(newText)}
         // defaultValue={text}
       />
       <Text style={styles.title}>Password</Text>
       <TextInput
         style={[styles.textInput,styles.marginInput]}
+        onChangeText={(text)=>setPassword(text)}
+        secureTextEntry={true}
+        value={password}
         // onChangeText={newText => setText(newText)}
         // defaultValue={text}
       />
-    
-    <TouchableOpacity style={styles.signupButton}  onPress={()=>{
-        navigation.navigate("Home");
-      }}>
+  {valid && (
+  <Text style={styles.errorText}>Invalid email or password</Text>
+)}
+    <TouchableOpacity style={styles.signupButton} onPress={handleLogin}>
         <Text style={styles.signupText}>Login</Text>
       </TouchableOpacity>
       <Text style={styles.haveAccount} onPress={()=>{navigation.navigate("SignUp")}}>Don`t have an account ? </Text>
@@ -138,6 +188,12 @@ haveAccount:{
 },
 margin_box:{
     marginTop:50
-}
+},
+errorText: {
+  color: 'red', // Change the color to your preferred error text color
+  // fontSize: 16, // Adjust the font size as needed
+  marginLeft: 58, // You can adjust the margin to align it properly
+  marginTop: 10, // You can adjust the margin to align it properly
+},
 })
 export default Login

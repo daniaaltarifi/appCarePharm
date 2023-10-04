@@ -13,13 +13,13 @@ import MedicineData from "../Data/MedicinesData.js";
 import { useNavigation } from "@react-navigation/native";
 import Header from "./Header.js";
 import axios from "axios";
-function Medicines() {
+function Advanced() {
   const navigation = useNavigation();
   const [medicines, setMedicines] = useState();
   useEffect(() => {
     const goForAxios = () => {
       axios
-        .get("http://192.168.68.110:5000/medicineAvailable")
+        .get("http://192.168.68.110:5000/advancedMedicine/getAllMedicine/")
         .then((response) => {
           // console.log('getting data from axios', response.data);
           setMedicines(response.data);
@@ -34,25 +34,48 @@ function Medicines() {
   return (
     <ScrollView>
       <View>
-        <Header title="Medicines" />
+        <Header title="Advanced" />
         {medicines &&
           medicines.map((medicine) => (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("MedicineDetails", {
+                navigation.navigate("AdvancedInfo", {
                   _id:medicine._id,
                   image:medicine.avatar,
-                  medicineName: medicine.NAME,
+                  RECORD_STATUS_DESC: medicine.RECORD_STATUS_DESC,
+                  REGISTRATION_REQUEST_NUMBER: medicine.REGISTRATION_REQUEST_NUMBER,
+                  REGISTRATION_REQUEST_DATE: medicine.REGISTRATION_REQUEST_DATE,
                   DRG_SERIAL_NO: medicine.DRG_SERIAL_NO,
-                  BARCODE: medicine.BARCODE,
+                  DRG_BARCODE: medicine.DRG_BARCODE,
+                  NAME: medicine.NAME,
                   DRG_FILLING: medicine.DRG_FILLING,
                   DOSAGE: medicine.DOSAGE,
                   DRG_CONCENTRATE: medicine.DRG_CONCENTRATE,
                   STORES_DESC_L: medicine.STORES_DESC_L,
-                  ATCCODE: medicine.ATCCODE,
-                  DRG_PRIMARY_CMP_COUNTRY: medicine.DRG_PRIMARY_CMP_COUNTRY,
-                  JPP: medicine.JPP,
-                  PHARM_P: medicine.PHARM_P,
+                  INGREDIENT: medicine.INGREDIENT,
+                  ATCCODE:medicine.ATCCODE,
+                  DRG_REG_NO:medicine.DRG_REG_NO,
+                  REGISTRATION_DATE:medicine.REGISTRATION_DATE,
+                  DRG_RENUAL_NO:medicine.DRG_RENUAL_NO,
+                  RE_REGISTRATION_DATE:medicine.RE_REGISTRATION_DATE,
+                  DRG_INDUST_CMP:medicine.DRG_INDUST_CMP,
+                  DRG_INDUST_CMP_COUNTRY:medicine.DRG_INDUST_CMP_COUNTRY,
+                  DRG_SALES_CMP:medicine.DRG_SALES_CMP,
+                  DRG_SALES_COUNTRY:medicine.DRG_SALES_COUNTRY,
+                  DRG_PRIMARY_CMP:medicine.DRG_PRIMARY_CMP,
+                  DRG_PRIMARY_CMP_COUNTRY:medicine.DRG_PRIMARY_CMP_COUNTRY,
+                  DRG_SECONDARY_CMP:medicine.DRG_SECONDARY_CMP,
+                  DRG_SECONDARY_CMP_COUNTRY:medicine.DRG_SECONDARY_CMP_COUNTRY,
+                  DRG_B_R_CMP:medicine.DRG_B_R_CMP,
+                  DRG_B_R_CMP_COUNTRY:medicine.DRG_B_R_CMP_COUNTRY,
+                  JHP:medicine.JHP,
+                  JHP_TAXED:medicine.JHP_TAXED,
+                  LIST_NAME:medicine.LIST_NAME,
+                  LIST_CLASSIFICATION:medicine.LIST_CLASSIFICATION,
+                  LIST_RECORD_TYPE:medicine.LIST_RECORD_TYPE,
+                  ITEM_SOURCE:medicine.ITEM_SOURCE,
+                  DISP_CATEGORY:medicine.DISP_CATEGORY,
+                  DRUG_TYPE:medicine.DRUG_TYPE
                 })
               }
               key={medicine._id}
@@ -136,4 +159,4 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
 });
-export default Medicines;
+export default Advanced;

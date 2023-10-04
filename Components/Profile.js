@@ -9,18 +9,23 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+
+import { useNavigation,useRoute } from "@react-navigation/native";
 function Profile() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const userInfo = route.params;
+  
 
   return (
     <View>
       <View style={styles.header}>
         <View style={styles.profile_container}>
           <Image source={require("../assets/profileImg.png")}></Image>
-          <Text style={styles.username}>username</Text>
+          <Text style={styles.username}>{userInfo.username}</Text>
         </View>
-        <Text style={styles.email}>username@gmail.com</Text>
+        <Text style={styles.email}>{userInfo.email}</Text>
       </View>
       <View style={styles.profile}>
         <Image source={require("../assets/editProfile.png")}></Image>
@@ -71,7 +76,7 @@ function Profile() {
         </View>
       </View>
       <TouchableOpacity style={styles.logout}>
-        <Text style={styles.text_logout}>LogOut</Text>
+        <Text style={styles.text_logout} onPress={()=>navigation.navigate("Login")}>LogOut</Text>
       </TouchableOpacity>
     </View>
   );
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
   email: {
     fontSize: 18,
     color: "#fff",
-    marginLeft: 100,
+    marginLeft: 120,
   },
   profile: {
     flexDirection: "row",

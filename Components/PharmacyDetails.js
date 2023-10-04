@@ -42,7 +42,7 @@ function PharmacyDetails() {
         <Text style={styles.paragraph}><Text style={styles.desc}>City:</Text>{city}</Text>
         <Text style={styles.paragraph}><Text style={styles.desc}>Street:</Text>{street}</Text>
         <Text style={styles.paragraph}><Text style={styles.desc}>State:</Text>{state}</Text>
-        <View style={styles.container}>
+        {/* <View style={styles.container}>
             <Text style={styles.title}>Services</Text>
       {services.map((item, index) => (
         <View style={styles.listItem} key={index}>
@@ -50,7 +50,7 @@ function PharmacyDetails() {
           <Text style={styles.paragraph}>{item}</Text>
         </View>
       ))}     
-      </View>
+      </View> */}
       <View>
         <Text style={styles.title}>Hours of operation</Text>
         <Text style={styles.details}><Text style={styles.desc}>Monday:</Text>{monday}</Text>

@@ -9,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
+import TabNavigation from "./TabNavigation";
 function Home() {
   const navigation = useNavigation();
 
@@ -32,19 +32,38 @@ function Home() {
       </View>
       <Text style={styles.serviceTitle}>Our Services</Text>
       <View style={styles.ourServices}>
-      <TouchableOpacity onPress={() => {
-  navigation.navigate("Medicines");
-}}>
-  <View style={styles.servicesContainer}>
-    <Image
-      source={require("../assets/medicines.png")}
-      style={styles.medcine_img}
-    ></Image>
-    <Text style={styles.text_service}>Medicine</Text>
-  </View>
-</TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Medicines");
+          }}
+        >
+          <View style={styles.servicesContainer}>
+            <Image
+              source={require("../assets/medicines.png")}
+              style={styles.medcine_img}
+            ></Image>
+            <Text style={styles.text_service}>Medicine</Text>
+          </View>
+        </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=>{navigation.navigate('MedicinesNews')}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Advanced");
+          }}
+        >
+          <View style={styles.servicesContainer}>
+            <Image
+              source={require("../assets/multivitamin.png")}
+              style={styles.advanced_img}
+            ></Image>
+            <Text style={styles.text_service}>Advanced</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("MedicinesNews");
+          }}
+        >
           <View style={styles.servicesContainer}>
             <Image
               source={require("../assets/news.jpeg")}
@@ -53,7 +72,11 @@ function Home() {
             <Text style={styles.text_service}>News</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>{navigation.navigate('Pharmacy')}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Pharmacy");
+          }}
+        >
           <View style={styles.servicesContainer}>
             <Image
               source={require("../assets/pharmacy.jpeg")}
@@ -71,15 +94,34 @@ function Home() {
           source={require("../assets/TopPharmacy.jpeg")}
           style={styles.topPharmacy_Img}
         ></Image>
-         <View style={styles.textContainer}>
-    <Text style={styles.text_pharmacy}>PharmacyOne</Text>
-    <View style={styles.row_rating}>
-<Image source={require('../assets/rate.png')} style={styles.rating}></Image>
-    <Text>4.9(37 Reviews)</Text>
-
-    </View>
-  </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.text_pharmacy}>Dar Alshifa Pharmacy</Text>
+          <View style={styles.row_rating}>
+            <Image
+              source={require("../assets/rate.png")}
+              style={styles.rating}
+            ></Image>
+            <Text>4.9(37 Reviews)</Text>
+          </View>
+        </View>
       </View>
+       <View style={styles.pharmacy}>
+        <Image
+          source={require("../assets/pharmacy.png")}
+          style={styles.topPharmacy_Img}
+        ></Image>
+        <View style={styles.textContainer}>
+          <Text style={styles.text_pharmacy}>AlDawaa Pharmacy</Text>
+          <View style={styles.row_rating}>
+            <Image
+              source={require("../assets/rate.png")}
+              style={styles.rating}
+            ></Image>
+            <Text>4.5(33 Reviews)</Text>
+          </View>
+        </View>
+      </View>
+      {/* <TabNavigation/> */}
     </View>
   );
 }
@@ -140,36 +182,42 @@ const styles = StyleSheet.create({
   servicesContainer: {
     backgroundColor: "#C8D8DE",
     height: 90,
-    width: 90,
+    width: 80,
     borderRadius: 15,
-    marginBottom:30,
-
+    marginBottom: 30,
+    marginLeft: 6,
   },
   medcine_img: {
     height: 70,
     width: 70,
-    margin: 10,
-    marginBottom:20,
+    margin: 7,
+    marginBottom: 20,
   },
-  text_service:{
-    textAlign:"center",
-    fontWeight:"bold"
+  advanced_img:{
+width:60,
+height:60,
+marginLeft: 10,
+marginTop: 10,
+marginBottom: 28,
+
+  },
+  text_service: {
+    textAlign: "center",
+    fontWeight: "bold",
   },
   news_img: {
     height: 68,
     width: 50,
-    marginLeft: 20,
+    marginLeft: 15,
     marginTop: 10,
-    marginBottom:20,
-
+    marginBottom: 20,
   },
   pharmacy_img: {
     height: 60,
     width: 65,
-    marginLeft: 14,
+    marginLeft: 9,
     marginTop: 15,
-    marginBottom:20,
-
+    marginBottom: 20,
   },
   pharmacy_title: {
     marginTop: 50,
@@ -179,31 +227,31 @@ const styles = StyleSheet.create({
     height: 80,
     width: 500,
     marginTop: 20,
-    flexDirection:"row",
-    alignItems:"center"
+    flexDirection: "row",
+    alignItems: "center",
   },
   topPharmacy_Img: {
     height: 80,
     width: 80,
     marginLeft: 30,
-    
   },
   textContainer: {
     flexDirection: "column", // This will make the text stack vertically
     marginLeft: 10, // Adjust the margin as needed
-    marginLeft:30
+    marginLeft: 30,
   },
-  text_pharmacy:{
-    fontSize:18,
-    fontWeight:"bold",
-    marginBottom:8
+  text_pharmacy: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 8,
   },
-  row_rating:{
-    flexDirection:"row"
+  row_rating: {
+    flexDirection: "row",
   },
-  rating:{
-height:15,
-width:15  }
+  rating: {
+    height: 15,
+    width: 15,
+  },
 });
 
 export default Home;
