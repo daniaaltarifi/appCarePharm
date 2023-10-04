@@ -53,7 +53,7 @@ function SignUp() {
     }
   
     try {
-      const response = await axios.post("http://192.168.68.110:5000/users", {
+      const response = await axios.post("https://backend-80j6.onrender.com/users", {
         username: formData.username,
         email: formData.email,
         password: formData.password,
@@ -63,9 +63,10 @@ function SignUp() {
       navigation.navigate("Login");
     } catch (error) {
       // Handle registration error, e.g., display error message
-      console.log("error");
-      console.error(error);
+      console.error("Axios Error:", error.message);
     }
+
+
   };
   return (
     <View>
@@ -145,6 +146,7 @@ function SignUp() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   miniCircle: {
     height: 150,

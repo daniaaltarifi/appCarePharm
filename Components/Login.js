@@ -18,7 +18,7 @@ const [password,setPassword]=useState("")
 const[valid,setValid]=useState(false)
 const handleLogin = async () => {
   try {
-    const response = await axios.post('http://192.168.68.110:5000/users/auth', {
+    const response = await axios.post('https://backend-80j6.onrender.com/users/auth', {
       email,
       password,
     });

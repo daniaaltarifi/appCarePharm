@@ -19,7 +19,7 @@ function Medicines() {
   useEffect(() => {
     const goForAxios = () => {
       axios
-        .get("http://192.168.68.110:5000/medicineAvailable")
+        .get("https://backend-80j6.onrender.com/medicineAvailable")
         .then((response) => {
           // console.log('getting data from axios', response.data);
           setMedicines(response.data);
